@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--Search Box--> 
+<div class="container search-form">
+  <div class="row input-field search-div">
+    <h6>Select one of the options to search for your favorite recipes</h6>
+    <form class="search-form-form" action="/get_recipes">
+        <div class="row">
+             <div class="form-field-div col s6 m4">
+                <p>Keyword search:</p>
+                <input type="text" name="recipe_name" value="">
+             </div> 
+             
+             <div class="form-field-div col s6 m4">
+                <p>Prep. time search:</p>
+                <input type="text" name="preparation_time" value="">
+             </div>
+          
+              <div class="form-field-div col s12 m4">
+                <p>Cuisines:</p>
+                <select name="category_name">
+                    <option class="disable" value="Choose your option" disabled selected >Choose your option</option>
+                    {% for category in categories %}
+                      <option value={{category.category_name}}>{{category.category_name}}</option>
+                    {% endfor %}
+                  </select>
+              </div>
+        </div>
+        <div class="row">
+              <div class="col s6 l4">
+                 <input class="btn btn-search" type="submit" value="Search">
+              </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+
+<!--Recipe Card-->
+
+<div class="container">
+ <div class="row recipes-list">
+   
+  {% if recipes.count() <= 0 %}
+    <div>
+      <p>No cuisine found</p>
+    </div>
+  {% else %}
+      {% for recipe in recipes %}
+              <div class="col s12 m6 l4">
+                <div class="card hoverable">
+                  <div class="card-image">
+                    <a href="{{url_for('recipe_single', recipe_id=recipe._id)}}"><img class="card-image-img" src="{{recipe.photo_url}}"></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{url_for('recipe_single', recipe_id=recipe._id)}}"><i class="material-icons btn-icon">import_contacts</i></a>
+                    <div id="category"><a>{{recipe.category_name}}</a></div>
+                  </div>
+                  
+                  <div class="card-content">
+                    <a href="{{url_for('recipe_single', recipe_id=recipe._id)}}"><span class="card-title">{{recipe.recipe_name}}</span></a>
+                    <div class="icon-cook-div"><i class="icon-cook material-icons prefix">timer</i><p class="descript">{{recipe.preparation_time}}</p></div>
+  
+                  </div>
+                  
+                  <div class="card-content red lighten-5 links-botton-card">
+                    <a class="edit-item-link" href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit ✎</a> <a class="delete-item-link"href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" onclick="return confirm('Are you sure?')">Delete ✗</a>
+                  </div>
+                  
+                </div>
+              </div>
+      {% endfor %}
+  {% endif %}
+</div>
+</div>
+<a href="https://icons8.com/icon/cpjI6tcPnjEb/taco">Taco icon by Icons8</a>    
+{% endblock %}
