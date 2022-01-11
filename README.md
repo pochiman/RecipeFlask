@@ -1,6 +1,6 @@
 # RecipeFlask
 
-[RecipeFlask](https://recipes-manager-flask.herokuapp.com/) serves as a storage container for all your recipe links.  Instead of cluttering up your "bookmarks" for your browser and having to sync bookmarks across browsers and devices, let's just create a page where we can nicely store the links to our favorite recipes!
+[RecipeFlask](https://recipeflask-pochiman.herokuapp.com/) serves as a storage container for all your recipe links.  Instead of cluttering up your "bookmarks" for your browser and having to sync bookmarks across browsers and devices, let's just create a page where we can nicely store the links to our favorite recipes!
 
 ## Features
 
